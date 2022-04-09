@@ -36,7 +36,6 @@ export default function View({ ViewData }) {
                     style={{
                       fontFamily: "Roboto",
                       textAlign: "center",
-                      textAlign: "center",
                       background: "lightgrey",
                     }}
                   >
