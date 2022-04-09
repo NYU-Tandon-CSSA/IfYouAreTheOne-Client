@@ -10,7 +10,7 @@ import {
 } from "@apollo/client";
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:5000/",
+  uri: "https://powerful-temple-86759.herokuapp.com/",
 });
 
 const client = new ApolloClient({
