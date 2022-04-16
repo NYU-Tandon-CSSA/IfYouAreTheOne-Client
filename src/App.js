@@ -25,12 +25,12 @@ function App() {
     pollInterval: 500,
   });
 
-  let offAudio = new Audio("/off.wav");
-  let blastAudio = new Audio("/blast.wav");
-
   useEffect(() => {
     let curOffCount = 0;
     let curBlastCount = 0;
+    let offAudio = new Audio("/off.wav");
+    let blastAudio = new Audio("/blast.wav");
+
     if (!loading && data) {
       setViewData(data.getLights);
       for (let i = 0; i < data.getLights.length; i++) {
@@ -52,7 +52,7 @@ function App() {
       setOffCount(curOffCount);
       setBlastCount(curBlastCount);
     }
-  }, [data, loading, offCount, blastCount, offAudio, blastAudio]);
+  }, [data, loading, offCount, blastCount]);
 
   return (
     <Router>
