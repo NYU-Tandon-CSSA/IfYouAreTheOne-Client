@@ -52,7 +52,7 @@ function App() {
       setOffCount(curOffCount);
       setBlastCount(curBlastCount);
     }
-  }, [data, loading, offCount, blastCount]);
+  }, [data, loading, offCount, blastCount, offAudio, curBlastCount]);
 
   return (
     <Router>
