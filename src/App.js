@@ -19,16 +19,40 @@ const FETCH_LIGHTS_QUERY = gql`
 
 function App() {
   const [ViewData, setViewData] = useState([]);
+  const [offCount, setOffCount] = useState(0);
+  const [blastCount, setBlastCount] = useState(0);
   const { loading, data } = useQuery(FETCH_LIGHTS_QUERY, {
     pollInterval: 500,
   });
 
+  let offAudio = new Audio("/off.wav");
+  let blastAudio = new Audio("/blast.wav");
+
   useEffect(() => {
+    let curOffCount = 0;
+    let curBlastCount = 0;
     if (!loading && data) {
       setViewData(data.getLights);
-      console.log("data changed!");
+      for (let i = 0; i < data.getLights.length; i++) {
+        const mode = data.getLights[i].mode;
+        if (mode === "off") {
+          curOffCount++;
+        } else if (mode === "blast") {
+          curBlastCount++;
+        }
+      }
+      if (curOffCount !== 0 && offCount < curOffCount) {
+        offAudio.play();
+        console.log("Light off!");
+      }
+      if (curBlastCount !== 0 && blastCount < curBlastCount) {
+        blastAudio.play();
+        console.log("Light Blast!");
+      }
+      setOffCount(curOffCount);
+      setBlastCount(curBlastCount);
     }
-  }, [data, loading]);
+  }, [data, loading, offCount, blastCount]);
 
   return (
     <Router>
