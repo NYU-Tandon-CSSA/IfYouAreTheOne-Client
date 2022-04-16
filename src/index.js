@@ -19,7 +19,7 @@ const httpLink = createHttpLink({
 });
 
 const wsLink = new WebSocketLink({
-  uri: "ws://powerful-temple-86759.herokuapp.com/graphql",
+  uri: "wss://powerful-temple-86759.herokuapp.com/graphql",
   options: {
     reconnect: true,
   },
