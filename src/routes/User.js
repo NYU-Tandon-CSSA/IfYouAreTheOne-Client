@@ -1,15 +1,19 @@
-import Button from "@mui/material/Button";
+import {
+  Stack,
+  Box,
+  Grid,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogTitle,
+} from "@mui/material";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Light from "../components/Light";
-import Grid from "@mui/material/Grid";
-import { Stack } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogTitle from "@mui/material/DialogTitle";
+
+import Light from "../components/Light";
 
 const UPDATE_LIGHTS = gql`
   mutation UpdateLights($name: String!, $mode: String!) {
@@ -136,6 +140,32 @@ export default function User({ ViewData }) {
           </Button>
         </Stack>
       </Grid>
+      <br />
+      <br />
+      <Box sx={{ flexGrow: 1, margin: 3 }}>
+        <Grid container spacing={5}>
+          {ViewData.map((light) => {
+            return (
+              <Grid key={light.name} item xs={4}>
+                <Stack>
+                  <Light key={light.name} mode={light.mode} />
+                  <br />
+                  <font
+                    size="6"
+                    style={{
+                      fontFamily: "Roboto",
+                      textAlign: "center",
+                      background: "lightgrey",
+                    }}
+                  >
+                    {light.name}
+                  </font>
+                </Stack>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Box>
 
       <Dialog
         open={openOffConfirm}

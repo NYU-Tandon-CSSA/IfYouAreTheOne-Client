@@ -73,7 +73,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<View ViewData={ViewData} />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin" element={<Admin ViewData={ViewData} />} />
         <Route path="/user/:username" element={<User ViewData={ViewData} />} />
       </Routes>
     </Router>

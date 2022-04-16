@@ -3,11 +3,9 @@ import Light from "../components/Light";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
-
 import { useQuery, useSubscription } from "@apollo/client";
 import gql from "graphql-tag";
 
