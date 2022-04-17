@@ -1,6 +1,5 @@
 import {
   Stack,
-  Box,
   Grid,
   Button,
   Dialog,
@@ -14,6 +13,7 @@ import { useParams } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import Light from "../components/Light";
+import LightCount from "../components/LightCount";
 
 const UPDATE_LIGHTS = gql`
   mutation UpdateLights($name: String!, $mode: String!) {
@@ -93,6 +93,8 @@ export default function User({ ViewData }) {
           }}
         >
           {user}
+          <br />
+          <LightCount ViewData={ViewData} />
         </font>
       </Grid>
       <br />
@@ -140,32 +142,6 @@ export default function User({ ViewData }) {
           </Button>
         </Stack>
       </Grid>
-      <br />
-      <br />
-      <Box sx={{ flexGrow: 1, margin: 3 }}>
-        <Grid container spacing={5}>
-          {ViewData.map((light) => {
-            return (
-              <Grid key={light.name} item xs={4}>
-                <Stack>
-                  <Light key={light.name} mode={light.mode} />
-                  <br />
-                  <font
-                    size="6"
-                    style={{
-                      fontFamily: "Roboto",
-                      textAlign: "center",
-                      background: "lightgrey",
-                    }}
-                  >
-                    {light.name}
-                  </font>
-                </Stack>
-              </Grid>
-            );
-          })}
-        </Grid>
-      </Box>
 
       <Dialog
         open={openOffConfirm}

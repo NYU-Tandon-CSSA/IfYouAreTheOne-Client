@@ -3,9 +3,6 @@ import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
 
 import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-import Grid from "@mui/material/Grid";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
@@ -16,7 +13,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 
-import Light from "../components/Light";
+import LightCount from "../components/LightCount";
 
 const UPDATE_LIGHTS = gql`
   mutation UpdateLights($name: String!, $mode: String!) {
@@ -28,10 +25,21 @@ const UPDATE_LIGHTS = gql`
 `;
 
 const UPDATE_PICKS = gql`
-  mutation UpdatePicks($name: String!, $pick: String!) {
+  mutation UpdatePick($name: String!, $pick: String!) {
     updatePick(name: $name, pick: $pick) {
       name
       pick
+      show
+    }
+  }
+`;
+
+const SHOW_PICKS = gql`
+  mutation ShowPick($name: String!, $show: Boolean!) {
+    showPick(name: $name, show: $show) {
+      name
+      pick
+      show
     }
   }
 `;
@@ -41,8 +49,7 @@ export default function Admin({ ViewData }) {
   const [openPick, setOpenPick] = useState(false);
   const [updateLight] = useMutation(UPDATE_LIGHTS);
   const [updatePick] = useMutation(UPDATE_PICKS);
-
-  console.log(pick);
+  const [updateShowPick] = useMutation(SHOW_PICKS);
 
   const handleClickOpenPick = () => {
     setOpenPick(true);
@@ -61,6 +68,19 @@ export default function Admin({ ViewData }) {
     });
   };
 
+  const onSendShowPicks = (show) => {
+    updateShowPick({
+      variables: {
+        name: "user",
+        show: show,
+      },
+    });
+  };
+
+  const handleClickShowPick = (show) => {
+    onSendShowPicks(show);
+  };
+
   const onSendLights = (name, mode) => {
     updateLight({
       variables: {
@@ -72,7 +92,10 @@ export default function Admin({ ViewData }) {
 
   return (
     <>
-      {"管理"}
+      {"管理页面"}
+      <br />
+      <br />
+      <LightCount ViewData={ViewData} />
       <br />
       <br />
       <Button
@@ -104,31 +127,26 @@ export default function Admin({ ViewData }) {
       </Button>
       <br />
       <br />
-
-      <Box sx={{ flexGrow: 1, margin: 3 }}>
-        <Grid container spacing={5}>
-          {ViewData.map((light) => {
-            return (
-              <Grid key={light.name} item xs={4}>
-                <Stack>
-                  <Light key={light.name} mode={light.mode} />
-                  <br />
-                  <font
-                    size="6"
-                    style={{
-                      fontFamily: "Roboto",
-                      textAlign: "center",
-                      background: "lightgrey",
-                    }}
-                  >
-                    {light.name}
-                  </font>
-                </Stack>
-              </Grid>
-            );
-          })}
-        </Grid>
-      </Box>
+      <Button
+        variant="contained"
+        onClick={() => {
+          handleClickShowPick(true);
+        }}
+      >
+        显示心动嘉宾
+      </Button>
+      <br />
+      <br />
+      <Button
+        variant="contained"
+        onClick={() => {
+          handleClickShowPick(false);
+        }}
+      >
+        隐藏心动嘉宾
+      </Button>
+      <br />
+      <br />
 
       <Dialog
         open={openPick}
@@ -217,7 +235,7 @@ export default function Admin({ ViewData }) {
         <DialogActions>
           <Button
             onClick={() => {
-              onSendPicks(pick);
+              onSendPicks(pick, false);
               handleClickClosePick();
             }}
           >

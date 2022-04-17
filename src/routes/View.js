@@ -3,7 +3,6 @@ import Light from "../components/Light";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useQuery, useSubscription } from "@apollo/client";
@@ -14,6 +13,7 @@ const FETCH_PICKS_QUERY = gql`
     getPicks {
       name
       pick
+      show
     }
   }
 `;
@@ -23,6 +23,7 @@ const PICKS_SUBSCRIPTION = gql`
     pickUpdated {
       name
       pick
+      show
     }
   }
 `;
@@ -32,17 +33,10 @@ export default function View({ ViewData }) {
   const [pick, setPick] = useState("");
   const [showPick, setShowPick] = useState(false);
 
-  const handleClickShowPick = () => {
-    setShowPick(true);
-  };
-
-  const handleClickHidePick = () => {
-    setShowPick(false);
-  };
-
   useEffect(() => {
     if (!loading && data) {
       setPick(data.getPicks[0].pick);
+      setShowPick(data.getPicks[0].show);
     }
   }, [data, loading]);
 
@@ -50,11 +44,40 @@ export default function View({ ViewData }) {
     onSubscriptionData: (data) => {
       const picks = data.subscriptionData.data.pickUpdated;
       setPick(picks[0].pick);
+      setShowPick(picks[0].show);
     },
   });
 
   return (
     <>
+      <Grid container justifyContent="center">
+        <font
+          size="6"
+          style={{
+            fontFamily: "Roboto",
+            textAlign: "center",
+          }}
+        >
+          <div
+            style={{
+              width: "100%",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <font
+              size="8"
+              style={{
+                fontFamily: "Roboto",
+                textAlign: "center",
+              }}
+            >
+              Tandon CSSA 非诚勿扰
+            </font>
+            <br />
+          </div>
+        </font>
+      </Grid>
       <Box sx={{ flexGrow: 1, margin: 3 }}>
         <Grid container spacing={5}>
           {ViewData.map((light) => {
@@ -79,54 +102,9 @@ export default function View({ ViewData }) {
           })}
         </Grid>
       </Box>
-      <br />
-      <Grid container justifyContent="center">
-        <font
-          size="6"
-          style={{
-            fontFamily: "Roboto",
-            textAlign: "center",
-          }}
-        >
-          <div
-            style={{
-              width: "100%",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <font
-              size="6"
-              style={{
-                fontFamily: "Roboto",
-                textAlign: "center",
-              }}
-            >
-              Tandon CSSA 非诚勿扰
-            </font>
-            <br />
-            <Button
-              variant="outlined"
-              onClick={handleClickShowPick}
-              style={{ width: "330px", height: "30px" }}
-            >
-              <font
-                size="5"
-                style={{
-                  fontFamily: "Roboto",
-                  textAlign: "center",
-                }}
-              >
-                显示心动嘉宾
-              </font>
-            </Button>
-          </div>
-        </font>
-      </Grid>
 
       <Dialog
         open={showPick}
-        onClose={handleClickHidePick}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >

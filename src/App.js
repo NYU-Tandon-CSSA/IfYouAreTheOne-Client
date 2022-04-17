@@ -26,14 +26,25 @@ const LIGHTS_SUBSCRIPTION = gql`
   }
 `;
 
+const PICKS_SUBSCRIPTION = gql`
+  subscription PickUpdated {
+    pickUpdated {
+      name
+      pick
+      show
+    }
+  }
+`;
+
 function App() {
   const [ViewData, setViewData] = useState([]);
   const [offCount, setOffCount] = useState(0);
   const [blastCount, setBlastCount] = useState(0);
   const { loading, data } = useQuery(FETCH_LIGHTS_QUERY);
 
-  let offAudio = new Audio("/off.wav");
-  let blastAudio = new Audio("/blast.wav");
+  let offAudio = new Audio("/off.mp3");
+  let blastAudio = new Audio("/blast.mp3");
+  let showPickAudio = new Audio("/showPick.mp3");
 
   useEffect(() => {
     if (!loading && data) {
@@ -66,6 +77,16 @@ function App() {
       }
       setOffCount(curOffCount);
       setBlastCount(curBlastCount);
+    },
+  });
+
+  useSubscription(PICKS_SUBSCRIPTION, {
+    onSubscriptionData: (data) => {
+      const picks = data.subscriptionData.data.pickUpdated;
+      if (picks[0].show) {
+        console.log("Show Pick");
+        showPickAudio.play();
+      }
     },
   });
 
