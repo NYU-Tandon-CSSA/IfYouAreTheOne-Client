@@ -47,6 +47,8 @@ const SHOW_PICKS = gql`
 export default function Admin({ ViewData }) {
   const [pick, setPick] = useState("1号");
   const [openPick, setOpenPick] = useState(false);
+  const [openLight, setOpenLight] = useState(false);
+  const [openShowPick, setOpenShowPick] = useState(false);
   const [updateLight] = useMutation(UPDATE_LIGHTS);
   const [updatePick] = useMutation(UPDATE_PICKS);
   const [updateShowPick] = useMutation(SHOW_PICKS);
@@ -54,9 +56,22 @@ export default function Admin({ ViewData }) {
   const handleClickOpenPick = () => {
     setOpenPick(true);
   };
-
   const handleClickClosePick = () => {
     setOpenPick(false);
+  };
+
+  const handleClickOpenLight = () => {
+    setOpenLight(true);
+  };
+  const handleClickCloseLight = () => {
+    setOpenLight(false);
+  };
+
+  const handleClickOpenShowPick = () => {
+    setOpenShowPick(true);
+  };
+  const handleClickCloseShowPick = () => {
+    setOpenShowPick(false);
   };
 
   const onSendPicks = (pick) => {
@@ -101,16 +116,7 @@ export default function Admin({ ViewData }) {
       <Button
         variant="contained"
         onClick={() => {
-          onSendLights("1号", "on");
-          onSendLights("2号", "on");
-          onSendLights("3号", "on");
-          onSendLights("4号", "on");
-          onSendLights("5号", "on");
-          onSendLights("6号", "on");
-          onSendLights("7号", "on");
-          onSendLights("8号", "on");
-          onSendLights("9号", "on");
-          onSendLights("11号", "on");
+          handleClickOpenLight();
         }}
       >
         点亮全部灯
@@ -130,7 +136,7 @@ export default function Admin({ ViewData }) {
       <Button
         variant="contained"
         onClick={() => {
-          handleClickShowPick(true);
+          handleClickOpenShowPick();
         }}
       >
         显示心动嘉宾
@@ -242,6 +248,63 @@ export default function Admin({ ViewData }) {
             确定
           </Button>
           <Button onClick={handleClickClosePick} autoFocus>
+            取消
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={openLight}
+        onClose={handleClickCloseLight}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"确定要初始化所有灯吗？"}
+        </DialogTitle>
+        <DialogActions>
+          <Button
+            onClick={() => {
+              onSendLights("1号", "on");
+              onSendLights("2号", "on");
+              onSendLights("3号", "on");
+              onSendLights("4号", "on");
+              onSendLights("5号", "on");
+              onSendLights("6号", "on");
+              onSendLights("7号", "on");
+              onSendLights("8号", "on");
+              onSendLights("9号", "on");
+              onSendLights("11号", "on");
+              handleClickCloseLight();
+            }}
+          >
+            确定
+          </Button>
+          <Button onClick={handleClickCloseLight} autoFocus>
+            取消
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={openShowPick}
+        onClose={handleClickCloseShowPick}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"确定要显示心动嘉宾吗？"}
+        </DialogTitle>
+        <DialogActions>
+          <Button
+            onClick={() => {
+              handleClickShowPick(true);
+              handleClickCloseShowPick();
+            }}
+          >
+            确定
+          </Button>
+          <Button onClick={handleClickCloseShowPick} autoFocus>
             取消
           </Button>
         </DialogActions>

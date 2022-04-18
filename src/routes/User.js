@@ -40,13 +40,13 @@ const theme = createTheme({
 export default function User({ ViewData }) {
   const [updateLight] = useMutation(UPDATE_LIGHTS);
   const [mode, setMode] = useState("off");
+  const [openWarning, setOpenWarning] = useState("off");
   const [openOffConfirm, setOpenOffConfirm] = useState(false);
   const [openBlastConfirm, setOpenBlastConfirm] = useState(false);
 
   const handleClickOpenOffConfirm = () => {
     setOpenOffConfirm(true);
   };
-
   const handleClickCloseOffConfirm = () => {
     setOpenOffConfirm(false);
   };
@@ -54,9 +54,15 @@ export default function User({ ViewData }) {
   const handleClickOpenBlastConfirm = () => {
     setOpenBlastConfirm(true);
   };
-
   const handleClickCloseBlastConfirm = () => {
     setOpenBlastConfirm(false);
+  };
+
+  const handleClickOpenWarning = () => {
+    setOpenWarning(true);
+  };
+  const handleClickCloseWarning = () => {
+    setOpenWarning(false);
   };
 
   const user = useParams().username;
@@ -110,7 +116,9 @@ export default function User({ ViewData }) {
         <Stack direction="row" spacing={5}>
           <Button
             variant="contained"
-            onClick={handleClickOpenOffConfirm}
+            onClick={
+              mode === "on" ? handleClickOpenOffConfirm : handleClickOpenWarning
+            }
             style={{ width: "180px", height: "80px" }}
             color="neutral"
           >
@@ -126,7 +134,11 @@ export default function User({ ViewData }) {
           </Button>
           <Button
             variant="contained"
-            onClick={handleClickOpenBlastConfirm}
+            onClick={
+              mode === "on"
+                ? handleClickOpenBlastConfirm
+                : handleClickOpenWarning
+            }
             style={{ width: "180px", height: "80px" }}
             color="blast"
           >
@@ -183,6 +195,26 @@ export default function User({ ViewData }) {
           </Button>
           <Button onClick={handleClickCloseBlastConfirm} autoFocus>
             取消
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={openWarning}
+        onClose={handleClickCloseWarning}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"你已经操作过了，如果是误操或有其他问题请跟主持人反馈"}
+        </DialogTitle>
+        <DialogActions>
+          <Button
+            onClick={() => {
+              handleClickCloseWarning();
+            }}
+          >
+            确定
           </Button>
         </DialogActions>
       </Dialog>
