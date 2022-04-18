@@ -12,8 +12,12 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
+import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
 
 import LightCount from "../components/LightCount";
+import Light from "../components/Light";
 
 const UPDATE_LIGHTS = gql`
   mutation UpdateLights($name: String!, $mode: String!) {
@@ -153,6 +157,31 @@ export default function Admin({ ViewData }) {
       </Button>
       <br />
       <br />
+
+      <Box sx={{ flexGrow: 1, margin: 3 }}>
+        <Grid container spacing={5}>
+          {ViewData.map((light) => {
+            return (
+              <Grid key={light.name} item xs={4}>
+                <Stack>
+                  <Light key={light.name} mode={light.mode} />
+                  <br />
+                  <font
+                    size="6"
+                    style={{
+                      fontFamily: "Roboto",
+                      textAlign: "center",
+                      background: "lightgrey",
+                    }}
+                  >
+                    {light.name}
+                  </font>
+                </Stack>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Box>
 
       <Dialog
         open={openPick}

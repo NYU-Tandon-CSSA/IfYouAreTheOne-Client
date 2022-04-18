@@ -8,6 +8,8 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useQuery, useSubscription } from "@apollo/client";
 import gql from "graphql-tag";
 
+import pickImage from "../images/pick.png";
+
 const FETCH_PICKS_QUERY = gql`
   {
     getPicks {
@@ -109,15 +111,26 @@ export default function View({ ViewData }) {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          <font
-            size="7"
+          <div
             style={{
-              fontFamily: "Roboto",
-              textAlign: "center",
+              backgroundImage: `url(${pickImage})`,
+              width: "490px",
+              height: "490px",
             }}
           >
-            {pick}
-          </font>
+            <div style={{ paddingTop: "155px", paddingLeft: "155px" }}>
+              <font
+                style={{
+                  fontFamily: "Roboto",
+                  textAlign: "center",
+                  fontSize: "130px",
+                  color: "white",
+                }}
+              >
+                {pick}
+              </font>
+            </div>
+          </div>
         </DialogTitle>
       </Dialog>
     </>

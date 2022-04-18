@@ -40,7 +40,7 @@ const theme = createTheme({
 export default function User({ ViewData }) {
   const [updateLight] = useMutation(UPDATE_LIGHTS);
   const [mode, setMode] = useState("off");
-  const [openWarning, setOpenWarning] = useState("off");
+  const [openWarning, setOpenWarning] = useState(false);
   const [openOffConfirm, setOpenOffConfirm] = useState(false);
   const [openBlastConfirm, setOpenBlastConfirm] = useState(false);
 
