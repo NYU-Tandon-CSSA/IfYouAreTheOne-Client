@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import useSound from "use-sound";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { useQuery, useSubscription } from "@apollo/client";
@@ -7,6 +8,10 @@ import gql from "graphql-tag";
 import View from "./routes/View";
 import User from "./routes/User";
 import Admin from "./routes/Admin";
+
+import blastSFX from "./sounds/blast.mp3";
+import offSFX from "./sounds/off.mp3";
+import showPickSFX from "./sounds/showPick.mp3";
 
 const FETCH_LIGHTS_QUERY = gql`
   {
@@ -42,20 +47,32 @@ function App() {
   const [blastCount, setBlastCount] = useState(0);
   const { loading, data } = useQuery(FETCH_LIGHTS_QUERY);
 
-  let offAudio = new Audio("/off.mp3");
-  let blastAudio = new Audio("/blast.mp3");
-  let showPickAudio = new Audio("/showPick.mp3");
+  const [playOffSFX] = useSound(offSFX);
+  const [playBlastSFX] = useSound(blastSFX);
+  const [playShowPickSFX] = useSound(showPickSFX);
 
   useEffect(() => {
     if (!loading && data) {
       setViewData(data.getLights);
+      let curOffCount = 0;
+      let curBlastCount = 0;
+      for (let i = 0; i < data.getLights.length; i++) {
+        const mode = data.getLights[i].mode;
+        if (mode === "off") {
+          curOffCount++;
+        } else if (mode === "blast") {
+          curBlastCount++;
+        }
+      }
+      setOffCount(curOffCount);
+      setBlastCount(curBlastCount);
     }
   }, [data, loading]);
+  console.log(offCount);
 
   useSubscription(LIGHTS_SUBSCRIPTION, {
     onSubscriptionData: (data) => {
       const lights = data.subscriptionData.data.lightUpdated;
-      setViewData(lights);
 
       let curOffCount = 0;
       let curBlastCount = 0;
@@ -68,15 +85,16 @@ function App() {
         }
       }
       if (curOffCount !== 0 && offCount < curOffCount) {
-        offAudio.play();
+        playOffSFX();
         console.log("Light off!");
       }
       if (curBlastCount !== 0 && blastCount < curBlastCount) {
-        blastAudio.play();
+        playBlastSFX();
         console.log("Light Blast!");
       }
       setOffCount(curOffCount);
       setBlastCount(curBlastCount);
+      setViewData(lights);
     },
   });
 
@@ -84,8 +102,8 @@ function App() {
     onSubscriptionData: (data) => {
       const picks = data.subscriptionData.data.pickUpdated;
       if (picks[0].show) {
+        playShowPickSFX();
         console.log("Show Pick");
-        showPickAudio.play();
       }
     },
   });
