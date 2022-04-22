@@ -93,6 +93,7 @@ export default function View({ ViewData }) {
                     style={{
                       fontFamily: "Roboto",
                       textAlign: "center",
+                      fontSize: "50px",
                       background: "lightgrey",
                     }}
                   >
@@ -118,16 +119,16 @@ export default function View({ ViewData }) {
               height: "490px",
             }}
           >
-            <div style={{ paddingTop: "155px", paddingLeft: "155px" }}>
+            <div style={{ paddingTop: "125px", paddingLeft: "195px" }}>
               <font
                 style={{
                   fontFamily: "Roboto",
                   textAlign: "center",
-                  fontSize: "130px",
+                  fontSize: "175px",
                   color: "white",
                 }}
               >
-                {pick}
+                {pick.substring(0, 1)}
               </font>
             </div>
           </div>
