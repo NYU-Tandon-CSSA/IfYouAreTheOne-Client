@@ -111,7 +111,13 @@ export default function Admin({ ViewData }) {
 
   return (
     <>
-      {"管理页面"}
+      <font
+        style={{
+          color: "white",
+        }}
+      >
+        {"管理页面"}
+      </font>
       <br />
       <br />
       <LightCount ViewData={ViewData} />

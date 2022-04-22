@@ -51,12 +51,7 @@ export default function View({ ViewData }) {
   });
 
   return (
-    <div
-      style={{
-        backgroundColor: "black",
-        height: "100vh",
-      }}
-    >
+    <>
       <Grid container justifyContent="center">
         <font
           size="6"
@@ -77,6 +72,7 @@ export default function View({ ViewData }) {
               style={{
                 fontFamily: "Roboto",
                 textAlign: "center",
+                color: "white",
               }}
             >
               Tandon CSSA 非诚勿扰
@@ -139,6 +135,6 @@ export default function View({ ViewData }) {
           </div>
         </DialogTitle>
       </Dialog>
-    </div>
+    </>
   );
 }

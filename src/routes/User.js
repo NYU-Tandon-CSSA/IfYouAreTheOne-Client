@@ -96,6 +96,7 @@ export default function User({ ViewData }) {
           style={{
             fontFamily: "Roboto",
             textAlign: "center",
+            color: "white",
           }}
         >
           {user}

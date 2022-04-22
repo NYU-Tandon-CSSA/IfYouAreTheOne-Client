@@ -23,10 +23,10 @@ export default function LightCount({ ViewData }) {
   }, [ViewData, lightTotal]);
 
   return (
-    <>
+    <font style={{ color: "white" }}>
       留灯数量： {onLightCount} / {lightTotal}
       <br />
       爆灯数量：{blastLightCount}
-    </>
+    </font>
   );
 }
