@@ -120,18 +120,33 @@ export default function View({ ViewData }) {
               height: "490px",
             }}
           >
-            <div style={{ paddingTop: "125px", paddingLeft: "160px" }}>
-              <font
-                style={{
-                  fontFamily: "Roboto",
-                  textAlign: "center",
-                  fontSize: "175px",
-                  color: "white",
-                }}
-              >
-                {pick.substring(-1)}
-              </font>
-            </div>
+            {pick.length === 3 ? (
+              <div style={{ paddingTop: "125px", paddingLeft: "200px" }}>
+                <font
+                  style={{
+                    fontFamily: "Roboto",
+                    textAlign: "center",
+                    fontSize: "175px",
+                    color: "white",
+                  }}
+                >
+                  {pick.substring(0, pick.length - 1)}
+                </font>
+              </div>
+            ) : (
+              <div style={{ paddingTop: "125px", paddingLeft: "150px" }}>
+                <font
+                  style={{
+                    fontFamily: "Roboto",
+                    textAlign: "center",
+                    fontSize: "175px",
+                    color: "white",
+                  }}
+                >
+                  {pick.substring(0, pick.length - 1)}
+                </font>
+              </div>
+            )}
           </div>
         </DialogTitle>
       </Dialog>
