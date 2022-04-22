@@ -51,7 +51,12 @@ export default function View({ ViewData }) {
   });
 
   return (
-    <>
+    <div
+      style={{
+        backgroundColor: "black",
+        height: "100vh",
+      }}
+    >
       <Grid container justifyContent="center">
         <font
           size="6"
@@ -119,7 +124,7 @@ export default function View({ ViewData }) {
               height: "490px",
             }}
           >
-            <div style={{ paddingTop: "125px", paddingLeft: "195px" }}>
+            <div style={{ paddingTop: "125px", paddingLeft: "160px" }}>
               <font
                 style={{
                   fontFamily: "Roboto",
@@ -128,12 +133,12 @@ export default function View({ ViewData }) {
                   color: "white",
                 }}
               >
-                {pick.substring(0, 1)}
+                {pick.substring(-1)}
               </font>
             </div>
           </div>
         </DialogTitle>
       </Dialog>
-    </>
+    </div>
   );
 }
