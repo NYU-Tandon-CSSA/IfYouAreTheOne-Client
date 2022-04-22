@@ -12,6 +12,8 @@ import {
 import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
 
+import { BrowserRouter as Router } from "react-router-dom";
+
 // For development, uri: http://localhost:5000/graphql
 // For deploy, uri: https://powerful-temple-86759.herokuapp.com/graphql
 const httpLink = createHttpLink({
@@ -47,7 +49,9 @@ const client = new ApolloClient({
 ReactDOM.render(
   <ApolloProvider client={client}>
     <React.StrictMode>
-      <App />
+      <Router>
+        <App />
+      </Router>
     </React.StrictMode>
   </ApolloProvider>,
   document.getElementById("root")

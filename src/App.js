@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useSound from "use-sound";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 
 import { useQuery, useSubscription } from "@apollo/client";
 import gql from "graphql-tag";
@@ -51,6 +51,8 @@ function App() {
   const [playBlastSFX] = useSound(blastSFX);
   const [playShowPickSFX] = useSound(showPickSFX);
 
+  let location = useLocation().pathname;
+
   useEffect(() => {
     if (!loading && data) {
       setViewData(data.getLights);
@@ -85,11 +87,15 @@ function App() {
         }
       }
       if (curOffCount !== 0 && offCount < curOffCount) {
-        playOffSFX();
+        if (location === "/") {
+          playOffSFX();
+        }
         console.log("Light off!");
       }
       if (curBlastCount !== 0 && blastCount < curBlastCount) {
-        playBlastSFX();
+        if (location === "/") {
+          playBlastSFX();
+        }
         console.log("Light Blast!");
       }
       setOffCount(curOffCount);
@@ -102,20 +108,20 @@ function App() {
     onSubscriptionData: (data) => {
       const picks = data.subscriptionData.data.pickUpdated;
       if (picks[0].show) {
-        playShowPickSFX();
+        if (location === "/") {
+          playShowPickSFX();
+        }
         console.log("Show Pick");
       }
     },
   });
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<View ViewData={ViewData} />} />
-        <Route path="/admin" element={<Admin ViewData={ViewData} />} />
-        <Route path="/user/:username" element={<User ViewData={ViewData} />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<View ViewData={ViewData} />} />
+      <Route path="/admin" element={<Admin ViewData={ViewData} />} />
+      <Route path="/user/:username" element={<User ViewData={ViewData} />} />
+    </Routes>
   );
 }
 
