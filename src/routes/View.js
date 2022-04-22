@@ -73,6 +73,7 @@ export default function View({ ViewData }) {
                 fontFamily: "Roboto",
                 textAlign: "center",
                 color: "white",
+                fontSize: "80px",
               }}
             >
               Tandon CSSA 非诚勿扰
@@ -94,7 +95,7 @@ export default function View({ ViewData }) {
                     style={{
                       fontFamily: "Roboto",
                       textAlign: "center",
-                      fontSize: "50px",
+                      fontSize: "80px",
                       background: "lightgrey",
                     }}
                   >
@@ -120,7 +121,7 @@ export default function View({ ViewData }) {
               height: "490px",
             }}
           >
-            {pick.length === 3 ? (
+            {pick.length === 2 ? (
               <div style={{ paddingTop: "125px", paddingLeft: "200px" }}>
                 <font
                   style={{
