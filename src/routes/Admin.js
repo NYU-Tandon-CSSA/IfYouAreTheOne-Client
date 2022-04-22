@@ -303,6 +303,7 @@ export default function Admin({ ViewData }) {
               onSendLights("7号", "on");
               onSendLights("8号", "on");
               onSendLights("9号", "on");
+              onSendLights("10号", "on");
               onSendLights("11号", "on");
               handleClickCloseLight();
             }}
