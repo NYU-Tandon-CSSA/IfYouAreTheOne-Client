@@ -13,5 +13,5 @@ export default function light({ mode }) {
   } else {
     light = blastLight;
   }
-  return <img src={light} width="100%" alt="light" />;
+  return <img src={light} width="95%" alt="light" />;
 }
