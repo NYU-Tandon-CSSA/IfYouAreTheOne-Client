@@ -73,7 +73,7 @@ export default function View({ ViewData }) {
                 fontFamily: "Roboto",
                 textAlign: "center",
                 color: "white",
-                fontSize: "80px",
+                fontSize: "60px",
               }}
             >
               Tandon CSSA 非诚勿扰
