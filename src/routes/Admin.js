@@ -1,6 +1,6 @@
 import { useState } from "react";
 import gql from "graphql-tag";
-import { useMutation } from "@apollo/client";
+import { useMutation, useSubscription } from "@apollo/client";
 
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -48,8 +48,19 @@ const SHOW_PICKS = gql`
   }
 `;
 
+const PICKS_SUBSCRIPTION = gql`
+  subscription PickUpdated {
+    pickUpdated {
+      name
+      pick
+      show
+    }
+  }
+`;
+
 export default function Admin({ ViewData }) {
-  const [pick, setPick] = useState("1号");
+  const [pick, setPick] = useState("无");
+  const [curPick, setCurPick] = useState(pick);
   const [openPick, setOpenPick] = useState(false);
   const [openLight, setOpenLight] = useState(false);
   const [openShowPick, setOpenShowPick] = useState(false);
@@ -109,6 +120,13 @@ export default function Admin({ ViewData }) {
     });
   };
 
+  useSubscription(PICKS_SUBSCRIPTION, {
+    onSubscriptionData: (data) => {
+      const picks = data.subscriptionData.data.pickUpdated;
+      setCurPick(picks[0].pick);
+    },
+  });
+
   return (
     <>
       <font
@@ -121,6 +139,14 @@ export default function Admin({ ViewData }) {
       <br />
       <br />
       <LightCount ViewData={ViewData} />
+      <br />
+      <font
+        style={{
+          color: "white",
+        }}
+      >
+        {`当前心动嘉宾： ${curPick}`}
+      </font>
       <br />
       <br />
       <Button
