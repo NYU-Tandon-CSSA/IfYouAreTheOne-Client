@@ -86,7 +86,7 @@ export default function View({ ViewData }) {
         <Grid container spacing={5}>
           {ViewData.map((light) => {
             return (
-              <Grid key={light.name} item xs={2}>
+              <Grid key={light.name} item style={{ width: "20%" }}>
                 <Stack>
                   <Light key={light.name} mode={light.mode} />
                   <br />
