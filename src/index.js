@@ -14,16 +14,16 @@ import { getMainDefinition } from "@apollo/client/utilities";
 
 import { BrowserRouter as Router } from "react-router-dom";
 
-// For development, uri: http://localhost:6000/graphql
+// For development, uri: http://localhost:5000/graphql
 // For deploy, uri: https://powerful-temple-86759.herokuapp.com/graphql
 const httpLink = createHttpLink({
-  uri: "http://localhost:6000/graphql",
+  uri: "https://powerful-temple-86759.herokuapp.com/graphql",
 });
 
-// For development, uri: ws://localhost:6000/graphql
+// For development, uri: ws://localhost:5000/graphql
 // For deploy, uri: wss://powerful-temple-86759.herokuapp.com/graphql
 const wsLink = new WebSocketLink({
-  uri: "ws://localhost:6000/graphql",
+  uri: "wss://powerful-temple-86759.herokuapp.com/graphql",
   options: {
     reconnect: true,
   },

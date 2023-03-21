@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import gql from "graphql-tag";
-import { useMutation, useSubscription, useQuery } from "@apollo/client";
+import { useMutation, useSubscription } from "@apollo/client";
 
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -48,16 +48,6 @@ const SHOW_PICKS = gql`
   }
 `;
 
-const FETCH_PICKS_QUERY = gql`
-  {
-    getPicks {
-      name
-      pick
-      show
-    }
-  }
-`;
-
 const PICKS_SUBSCRIPTION = gql`
   subscription PickUpdated {
     pickUpdated {
@@ -77,8 +67,6 @@ export default function Admin({ ViewData }) {
   const [updateLight] = useMutation(UPDATE_LIGHTS);
   const [updatePick] = useMutation(UPDATE_PICKS);
   const [updateShowPick] = useMutation(SHOW_PICKS);
-
-  const { loading, data } = useQuery(FETCH_PICKS_QUERY);
 
   const handleClickOpenPick = () => {
     setOpenPick(true);
@@ -138,12 +126,6 @@ export default function Admin({ ViewData }) {
       setCurPick(picks[0].pick);
     },
   });
-
-  useEffect(() => {
-    if (!loading && data) {
-      setCurPick(data.getPicks[0].pick);
-    }
-  }, [data, loading]);
 
   return (
     <>
