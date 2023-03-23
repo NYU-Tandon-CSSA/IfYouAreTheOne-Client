@@ -83,10 +83,10 @@ export default function View({ ViewData }) {
         </font>
       </Grid>
       <Box sx={{ flexGrow: 1, margin: 3 }}>
-        <Grid container spacing={5}>
+        <Grid container spacing={6}>
           {ViewData.map((light) => {
             return (
-              <Grid key={light.name} item style={{ width: "20%" }}>
+              <Grid key={light.name} item style={{ width: "16%" }}>
                 <Stack>
                   <Light key={light.name} mode={light.mode} />
                   <br />
