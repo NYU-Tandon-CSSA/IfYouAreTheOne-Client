@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Light from "../components/Light";
+import Image from "../components/Image";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -88,6 +89,7 @@ export default function View({ ViewData }) {
             return (
               <Grid key={light.name} item style={{ width: "16%" }}>
                 <Stack>
+                  <Image key={light.name} name={light.name} mode={light.mode} />
                   <Light key={light.name} mode={light.mode} />
                   <br />
                   <font
@@ -95,8 +97,9 @@ export default function View({ ViewData }) {
                     style={{
                       fontFamily: "Roboto",
                       textAlign: "center",
-                      fontSize: "65px",
-                      background: "lightgrey",
+                      fontSize: "60px",
+                      color:"red",
+                      background: "black",
                     }}
                   >
                     {light.name}
