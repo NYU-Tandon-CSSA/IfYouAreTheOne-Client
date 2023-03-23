@@ -95,7 +95,7 @@ export default function View({ ViewData }) {
                     style={{
                       fontFamily: "Roboto",
                       textAlign: "center",
-                      fontSize: "80px",
+                      fontSize: "65px",
                       background: "lightgrey",
                     }}
                   >

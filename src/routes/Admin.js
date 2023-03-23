@@ -337,6 +337,7 @@ export default function Admin({ ViewData }) {
               onSendLights("9号", "on");
               onSendLights("10号", "on");
               onSendLights("11号", "on");
+              onSendLights("12号", "on");
               handleClickCloseLight();
             }}
           >
