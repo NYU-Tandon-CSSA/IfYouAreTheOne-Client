@@ -21,6 +21,8 @@ const FETCH_PICKS_QUERY = gql`
   }
 `;
 
+
+
 const PICKS_SUBSCRIPTION = gql`
   subscription PickUpdated {
     pickUpdated {
