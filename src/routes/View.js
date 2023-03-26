@@ -14,20 +14,18 @@ import pickImage from "../images/pick.png";
 const FETCH_PICKS_QUERY = gql`
   {
     getPicks {
-      name
-      pick
+      user
+      userid
       show
     }
   }
 `;
 
-
-
 const PICKS_SUBSCRIPTION = gql`
   subscription PickUpdated {
     pickUpdated {
-      name
-      pick
+      user
+      userid
       show
     }
   }
@@ -40,7 +38,7 @@ export default function View({ ViewData }) {
 
   useEffect(() => {
     if (!loading && data) {
-      setPick(data.getPicks[0].pick);
+      setPick(data.getPicks[0].userid);
       setShowPick(data.getPicks[0].show);
     }
   }, [data, loading]);
@@ -48,7 +46,7 @@ export default function View({ ViewData }) {
   useSubscription(PICKS_SUBSCRIPTION, {
     onSubscriptionData: (data) => {
       const picks = data.subscriptionData.data.pickUpdated;
-      setPick(picks[0].pick);
+      setPick(picks[0].userid);
       setShowPick(picks[0].show);
     },
   });
@@ -89,10 +87,14 @@ export default function View({ ViewData }) {
         <Grid container spacing={6}>
           {ViewData.map((light) => {
             return (
-              <Grid key={light.name} item style={{ width: "16%" }}>
+              <Grid key={light.userid} item style={{ width: "16%" }}>
                 <Stack>
-                  <Image key={light.name} name={light.name} mode={light.mode} />
-                  <Light key={light.name} mode={light.mode} />
+                  <Image
+                    key={light.userid}
+                    userid={light.userid}
+                    mode={light.mode}
+                  />
+                  <Light key={light.userid} mode={light.mode} />
                   <br />
                   <font
                     size="6"
@@ -100,7 +102,7 @@ export default function View({ ViewData }) {
                       fontFamily: "Roboto",
                       textAlign: "center",
                       fontSize: "60px",
-                      color:"red",
+                      color: "red",
                       background: "black",
                     }}
                   >
@@ -136,7 +138,7 @@ export default function View({ ViewData }) {
                     color: "white",
                   }}
                 >
-                  {pick.substring(0, pick.length - 1)}
+                  {pick}
                 </font>
               </div>
             ) : (
@@ -149,7 +151,7 @@ export default function View({ ViewData }) {
                     color: "white",
                   }}
                 >
-                  {pick.substring(0, pick.length - 1)}
+                  {pick}
                 </font>
               </div>
             )}

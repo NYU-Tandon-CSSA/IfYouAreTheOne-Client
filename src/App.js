@@ -16,6 +16,7 @@ import showPickSFX from "./sounds/showPick.mp3";
 const FETCH_LIGHTS_QUERY = gql`
   {
     getLights {
+      userid
       name
       mode
     }
@@ -25,6 +26,7 @@ const FETCH_LIGHTS_QUERY = gql`
 const LIGHTS_SUBSCRIPTION = gql`
   subscription LightUpdated {
     lightUpdated {
+      userid
       name
       mode
     }
@@ -34,8 +36,8 @@ const LIGHTS_SUBSCRIPTION = gql`
 const PICKS_SUBSCRIPTION = gql`
   subscription PickUpdated {
     pickUpdated {
-      name
-      pick
+      user
+      userid
       show
     }
   }

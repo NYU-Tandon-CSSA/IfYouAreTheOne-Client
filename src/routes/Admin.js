@@ -20,29 +20,29 @@ import LightCount from "../components/LightCount";
 import Light from "../components/Light";
 
 const UPDATE_LIGHTS = gql`
-  mutation UpdateLights($name: String!, $mode: String!) {
-    updateLight(name: $name, mode: $mode) {
-      name
+  mutation UpdateLights($userid: Int!, $mode: String!) {
+    updateLight(userid: $userid, mode: $mode) {
+      userid
       mode
     }
   }
 `;
 
 const UPDATE_PICKS = gql`
-  mutation UpdatePick($name: String!, $pick: String!) {
-    updatePick(name: $name, pick: $pick) {
-      name
-      pick
+  mutation UpdatePick($user: String!, $userid: Int!) {
+    updatePick(user: $user, userid: $userid) {
+      user
+      userid
       show
     }
   }
 `;
 
 const SHOW_PICKS = gql`
-  mutation ShowPick($name: String!, $show: Boolean!) {
-    showPick(name: $name, show: $show) {
-      name
-      pick
+  mutation ShowPick($user: String!, $show: Boolean!) {
+    showPick(user: $user, show: $show) {
+      user
+      userid
       show
     }
   }
@@ -51,15 +51,15 @@ const SHOW_PICKS = gql`
 const PICKS_SUBSCRIPTION = gql`
   subscription PickUpdated {
     pickUpdated {
-      name
-      pick
+      user
+      userid
       show
     }
   }
 `;
 
 export default function Admin({ ViewData }) {
-  const [pick, setPick] = useState("无");
+  const [pick, setPick] = useState("");
   const [curPick, setCurPick] = useState(pick);
   const [openPick, setOpenPick] = useState(false);
   const [openLight, setOpenLight] = useState(false);
@@ -89,11 +89,11 @@ export default function Admin({ ViewData }) {
     setOpenShowPick(false);
   };
 
-  const onSendPicks = (pick) => {
+  const onSendPicks = (userid) => {
     updatePick({
       variables: {
-        name: "user",
-        pick: pick,
+        user: "user",
+        userid: userid,
       },
     });
   };
@@ -101,7 +101,7 @@ export default function Admin({ ViewData }) {
   const onSendShowPicks = (show) => {
     updateShowPick({
       variables: {
-        name: "user",
+        user: "user",
         show: show,
       },
     });
@@ -111,10 +111,10 @@ export default function Admin({ ViewData }) {
     onSendShowPicks(show);
   };
 
-  const onSendLights = (name, mode) => {
+  const onSendLights = (userid, mode) => {
     updateLight({
       variables: {
-        name: name,
+        userid: userid,
         mode: mode,
       },
     });
@@ -123,7 +123,7 @@ export default function Admin({ ViewData }) {
   useSubscription(PICKS_SUBSCRIPTION, {
     onSubscriptionData: (data) => {
       const picks = data.subscriptionData.data.pickUpdated;
-      setCurPick(picks[0].pick);
+      setCurPick(picks[0].userid);
     },
   });
 
@@ -194,9 +194,9 @@ export default function Admin({ ViewData }) {
         <Grid container spacing={5}>
           {ViewData.map((light) => {
             return (
-              <Grid key={light.name} item xs={4}>
+              <Grid key={light.userid} item xs={4}>
                 <Stack>
-                  <Light key={light.name} mode={light.mode} />
+                  <Light key={light.userid} mode={light.mode} />
                   <br />
                   <font
                     size="6"
@@ -206,7 +206,7 @@ export default function Admin({ ViewData }) {
                       background: "lightgrey",
                     }}
                   >
-                    {light.name}
+                    {light.userid}
                   </font>
                 </Stack>
               </Grid>
@@ -227,74 +227,73 @@ export default function Admin({ ViewData }) {
             <FormLabel id="demo-radio-buttons-group-label">嘉宾编号</FormLabel>
             <RadioGroup
               aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue="1号"
               name="radio-buttons-group"
             >
               <FormControlLabel
-                value="1号"
+                value="1"
                 control={<Radio />}
-                label="1号"
-                onClick={() => setPick("1号")}
+                label="1"
+                onClick={() => setPick(1)}
               />
               <FormControlLabel
-                value="2号"
+                value="2"
                 control={<Radio />}
-                label="2号"
-                onClick={() => setPick("2号")}
+                label="2"
+                onClick={() => setPick(2)}
               />
               <FormControlLabel
-                value="3号"
+                value="3"
                 control={<Radio />}
-                label="3号"
-                onClick={() => setPick("3号")}
+                label="3"
+                onClick={() => setPick(3)}
               />
               <FormControlLabel
-                value="4号"
+                value="4"
                 control={<Radio />}
-                label="4号"
-                onClick={() => setPick("4号")}
+                label="4"
+                onClick={() => setPick(4)}
               />
               <FormControlLabel
-                value="5号"
+                value="5"
                 control={<Radio />}
-                label="5号"
-                onClick={() => setPick("5号")}
+                label="5"
+                onClick={() => setPick(5)}
               />
               <FormControlLabel
-                value="6号"
+                value="6"
                 control={<Radio />}
-                label="6号"
-                onClick={() => setPick("6号")}
+                label="6"
+                onClick={() => setPick(6)}
               />
               <FormControlLabel
-                value="7号"
+                value="7"
                 control={<Radio />}
-                label="7号"
-                onClick={() => setPick("7号")}
+                label="7"
+                onClick={() => setPick(7)}
               />
               <FormControlLabel
-                value="8号"
+                value="8"
                 control={<Radio />}
-                label="8号"
-                onClick={() => setPick("8号")}
+                label="8"
+                onClick={() => setPick(8)}
               />
               <FormControlLabel
-                value="9号"
+                value="9"
                 control={<Radio />}
-                label="9号"
-                onClick={() => setPick("9号")}
+                label="9"
+                onClick={() => setPick(9)}
               />
               <FormControlLabel
-                value="10号"
+                value="10"
                 control={<Radio />}
-                label="10号"
-                onClick={() => setPick("10号")}
+                label="10"
+                onClick={() => setPick(10)}
               />
               <FormControlLabel
-                value="11号"
+                value="11"
                 control={<Radio />}
-                label="11号"
-                onClick={() => setPick("11号")}
+                label="11"
+                onClick={() => setPick(11)}
               />
             </RadioGroup>
           </FormControl>
@@ -326,18 +325,18 @@ export default function Admin({ ViewData }) {
         <DialogActions>
           <Button
             onClick={() => {
-              onSendLights("1号", "on");
-              onSendLights("2号", "on");
-              onSendLights("3号", "on");
-              onSendLights("4号", "on");
-              onSendLights("5号", "on");
-              onSendLights("6号", "on");
-              onSendLights("7号", "on");
-              onSendLights("8号", "on");
-              onSendLights("9号", "on");
-              onSendLights("10号", "on");
-              onSendLights("11号", "on");
-              onSendLights("12号", "on");
+              onSendLights(1, "on");
+              onSendLights(2, "on");
+              onSendLights(3, "on");
+              onSendLights(4, "on");
+              onSendLights(5, "on");
+              onSendLights(6, "on");
+              onSendLights(7, "on");
+              onSendLights(8, "on");
+              onSendLights(9, "on");
+              onSendLights(10, "on");
+              onSendLights(11, "on");
+              onSendLights(12, "on");
               handleClickCloseLight();
             }}
           >
