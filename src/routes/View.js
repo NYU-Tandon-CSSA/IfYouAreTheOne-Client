@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Light from "../components/Light";
+// import Light from "../components/Light";
 import Image from "../components/Image";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
@@ -84,29 +84,32 @@ export default function View({ ViewData }) {
         </font>
       </Grid>
       <Box sx={{ flexGrow: 1, margin: 3 }}>
-        <Grid container spacing={6}>
+        <Grid container spacing={6} style={{justifyContent: 'center'}}>
           {ViewData.map((light) => {
             return (
-              <Grid key={light.userid} item style={{ width: "16%" }}>
+              <Grid key={light.userid} item style={{ width: "16%", height:"100%",display: 'inline-flex'}}>
                 <Stack>
-                  <Image
-                    key={light.userid}
-                    userid={light.userid}
-                    mode={light.mode}
-                  />
-                  <Light key={light.userid} mode={light.mode} />
-                  <br />
+                    {/* <Image
+                      key={light.userid}
+                      userid={light.userid}
+                      mode={light.mode}
+                    /> */}
+                    <Image key={light.userid} userid={light.userid} mode={light.mode}/>
+                    <br />
                   <font
                     size="6"
                     style={{
                       fontFamily: "Roboto",
                       textAlign: "center",
-                      fontSize: "60px",
+                      fontSize: "3vw",
                       color: "red",
                       background: "black",
+                      position:"relative",
+                      display:'inline-flex',
+                      top:"-20%"
                     }}
                   >
-                    {light.name}
+                    {light.userid}. {light.name}
                   </font>
                 </Stack>
               </Grid>
