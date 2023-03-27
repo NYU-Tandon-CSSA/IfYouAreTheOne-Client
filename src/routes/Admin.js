@@ -8,6 +8,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import Radio from "@mui/material/Radio";
+import Image from "../components/Image";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
@@ -17,7 +18,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 
 import LightCount from "../components/LightCount";
-import Light from "../components/Light";
+// import Light from "../components/Light";
 
 const UPDATE_LIGHTS = gql`
   mutation UpdateLights($userid: Int!, $mode: String!) {
@@ -194,9 +195,9 @@ export default function Admin({ ViewData }) {
         <Grid container spacing={5}>
           {ViewData.map((light) => {
             return (
-              <Grid key={light.userid} item xs={4}>
+              <Grid key={light.userid} item xs={1}>
                 <Stack>
-                  <Light key={light.userid} mode={light.mode} />
+                  <Image key={light.userid} userid={light.userid} mode={light.mode} />
                   <br />
                   <font
                     size="6"

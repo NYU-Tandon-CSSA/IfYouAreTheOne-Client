@@ -11,14 +11,14 @@ import { useMutation } from "@apollo/client";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
-import Light from "../components/Light";
+import Image from "../components/Image";
+// import Light from "../components/Light";
 import LightCount from "../components/LightCount";
 
 const UPDATE_LIGHTS = gql`
-  mutation UpdateLights($name: String!, $mode: String!) {
-    updateLight(name: $name, mode: $mode) {
-      name
+  mutation UpdateLights($userid: Int!, $mode: String!) {
+    updateLight(userid: $userid, mode: $mode) {
+      userid
       mode
     }
   }
@@ -65,12 +65,12 @@ export default function User({ ViewData }) {
     setOpenWarning(false);
   };
 
-  const user = useParams().username;
+  const user = parseInt(useParams().username);
 
   const onSend = (username, lightmode) => {
     updateLight({
       variables: {
-        name: username,
+        userid: username,
         mode: lightmode,
       },
     });
@@ -80,7 +80,7 @@ export default function User({ ViewData }) {
     if (ViewData && ViewData.length !== 0) {
       let index = 0;
       for (let i = 0; i < ViewData.length; i++) {
-        if (ViewData[i]["name"] === user) {
+        if (ViewData[i]["userid"] === user) {
           index = i;
         }
       }
@@ -108,7 +108,7 @@ export default function User({ ViewData }) {
       <br />
       <Grid container justifyContent="center">
         <div style={{ width: "400px" }}>
-          <Light mode={mode} />
+          <Image mode={mode}/>
         </div>
       </Grid>
       <br />
