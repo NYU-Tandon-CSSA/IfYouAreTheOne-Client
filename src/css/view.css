@@ -1,0 +1,55 @@
+.background {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    height: 120vh;
+    font-family: 'Exo 2', sans-serif;
+  }
+  
+    @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  
+  .title-wrapper {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    transform: skew(0, -8deg);
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+  
+  .top-title {
+    order: 1;
+    text-align: center;
+    color: #fff;
+    font-size: clamp(2rem, 4vw, 1.5rem);
+  }
+  
+  .sweet-title {
+    order: 2;
+    color: #fde9ff;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: clamp(8rem, 10vw, 6rem);
+    text-align: center;
+    text-shadow: 3px 1px 1px #4af7ff, 2px 2px 1px #165bfb, 4px 2px 1px #4af7ff, 3px 3px 1px #165bfb, 5px 3px 1px #4af7ff, 4px 4px 1px #165bfb, 6px 4px 1px #4af7ff, 5px 5px 1px #165bfb, 7px 5px 1px #4af7ff, 6px 6px 1px #165bfb, 8px 6px 1px #4af7ff, 7px 7px 1px #165bfb, 9px 7px 1px #4af7ff;  
+}
+
+  .noPadding{
+    padding-top: 0!important;
+  }
+  
+  .nonbackground{
+    background-color:rgba(255, 255, 255, 0)!important;
+    box-shadow: none!important;
+  }

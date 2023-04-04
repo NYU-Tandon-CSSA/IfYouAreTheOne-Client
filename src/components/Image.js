@@ -33,6 +33,6 @@ export default function light({ userid, mode }) {
   }
   return (<div style={{position: "relative"}}>
             <img src={userImage} width="100%" alt="light" style={{opacity:imageState, borderRadius: "50%", position: "relative"}}/>
-            <img src={light} width="60%" alt="light" style={{position: "relative",top:"-25%",left:"50%"}}/>
+            <img src={light} width="40%" alt="light" style={{position: "relative",top:"-25%",left:"60%"}}/>
           </div>);
 }

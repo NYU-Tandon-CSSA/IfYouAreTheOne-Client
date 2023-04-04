@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import Light from "../components/Light";
 import Image from "../components/Image";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
@@ -10,6 +9,7 @@ import { useQuery, useSubscription } from "@apollo/client";
 import gql from "graphql-tag";
 
 import pickImage from "../images/pick.png";
+import '../css/view.css';
 
 const FETCH_PICKS_QUERY = gql`
   {
@@ -53,57 +53,35 @@ export default function View({ ViewData }) {
 
   return (
     <>
+    <div className="background">
       <Grid container justifyContent="center">
-        <font
-          size="6"
-          style={{
-            fontFamily: "Roboto",
-            textAlign: "center",
-          }}
-        >
           <div
-            style={{
-              width: "100%",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
+            className="title-wrapper"
           >
             <font
-              size="8"
-              style={{
-                fontFamily: "Roboto",
-                textAlign: "center",
-                color: "white",
-                fontSize: "50px",
-              }}
+              className="top-title">
+              T a n d o n C S S A
+            </font>
+            <font
+              className="sweet-title"
             >
-              Tandon CSSA 非诚勿扰
+              非 诚 勿 扰
             </font>
             <br />
           </div>
-        </font>
       </Grid>
-      <Box sx={{ flexGrow: 1, margin: 3 }}>
-        <Grid container spacing={6} style={{justifyContent: 'center'}}>
+      <Box sx={{ flexGrow: 1, margin: 2 }}>
+        <Grid container style={{justifyContent: 'center', maxWidth:"150vh", margin:"auto"}} justifyContent="center">
           {ViewData.map((light) => {
             return (
-              <Grid key={light.userid} item style={{ width: "16%", height:"100%",display: 'inline-flex'}}>
-                <Stack>
-                    {/* <Image
-                      key={light.userid}
-                      userid={light.userid}
-                      mode={light.mode}
-                    /> */}
+              <Grid key={light.userid} item style={{ width: "17%", height:"100%",display: 'inline-flex',padding:"20px"}} className="noPadding" justifyContent="center">
+                <Stack style={{justifyContent: "center"}}>
                     <Image key={light.userid} userid={light.userid} mode={light.mode}/>
-                    <br />
                   <font
-                    size="6"
                     style={{
-                      fontFamily: "Roboto",
-                      textAlign: "center",
-                      fontSize: "3vw",
-                      color: "red",
-                      background: "black",
+                      justifyContent: "center",
+                      fontSize: "2vw",
+                      color: "white",
                       position:"relative",
                       display:'inline-flex',
                       top:"-20%"
@@ -122,6 +100,12 @@ export default function View({ ViewData }) {
         open={showPick}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        PaperProps={{
+          style: {
+            backgroundColor: 'transparent',
+            boxShadow: 'none',
+          },
+        }}
       >
         <DialogTitle id="alert-dialog-title">
           <div
@@ -129,38 +113,27 @@ export default function View({ ViewData }) {
               backgroundImage: `url(${pickImage})`,
               width: "490px",
               height: "490px",
+              justifyContent: "center",
+              textAlign: "center",
             }}
           >
-            {pick.length === 2 ? (
-              <div style={{ paddingTop: "125px", paddingLeft: "200px" }}>
+              {/* <div style={{justifyContent: "center",margin:"auto"}}> */}
                 <font
                   style={{
-                    fontFamily: "Roboto",
                     textAlign: "center",
+                    justifyContent: "center",
+                    marginTop:"25%",
                     fontSize: "175px",
+                    display:"inline-flex",
                     color: "white",
                   }}
                 >
                   {pick}
                 </font>
-              </div>
-            ) : (
-              <div style={{ paddingTop: "125px", paddingLeft: "150px" }}>
-                <font
-                  style={{
-                    fontFamily: "Roboto",
-                    textAlign: "center",
-                    fontSize: "175px",
-                    color: "white",
-                  }}
-                >
-                  {pick}
-                </font>
-              </div>
-            )}
-          </div>
+            </div>
         </DialogTitle>
       </Dialog>
+    </div>
     </>
   );
 }
