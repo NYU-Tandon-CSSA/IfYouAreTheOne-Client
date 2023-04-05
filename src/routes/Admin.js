@@ -18,7 +18,6 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 
 import LightCount from "../components/LightCount";
-// import Light from "../components/Light";
 
 const UPDATE_LIGHTS = gql`
   mutation UpdateLights($userid: Int!, $mode: String!) {
@@ -197,7 +196,11 @@ export default function Admin({ ViewData }) {
             return (
               <Grid key={light.userid} item xs={1}>
                 <Stack>
-                  <Image key={light.userid} userid={light.userid} mode={light.mode} />
+                  <Image
+                    key={light.userid}
+                    userid={light.userid}
+                    mode={light.mode}
+                  />
                   <br />
                   <font
                     size="6"
@@ -290,12 +293,6 @@ export default function Admin({ ViewData }) {
                 label="10"
                 onClick={() => setPick(10)}
               />
-              <FormControlLabel
-                value="11"
-                control={<Radio />}
-                label="11"
-                onClick={() => setPick(11)}
-              />
             </RadioGroup>
           </FormControl>
         </DialogContent>
@@ -336,8 +333,6 @@ export default function Admin({ ViewData }) {
               onSendLights(8, "on");
               onSendLights(9, "on");
               onSendLights(10, "on");
-              onSendLights(11, "on");
-              onSendLights(12, "on");
               handleClickCloseLight();
             }}
           >

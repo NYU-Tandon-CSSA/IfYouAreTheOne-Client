@@ -9,7 +9,7 @@ import { useQuery, useSubscription } from "@apollo/client";
 import gql from "graphql-tag";
 
 import pickImage from "../images/pick.png";
-import '../css/view.css';
+import "../css/view.css";
 
 const FETCH_PICKS_QUERY = gql`
   {
@@ -53,87 +53,101 @@ export default function View({ ViewData }) {
 
   return (
     <>
-    <div className="background">
-      <Grid container justifyContent="center">
-          <div
-            className="title-wrapper"
-          >
-            <font
-              className="top-title">
-              T a n d o n C S S A
-            </font>
-            <font
-              className="sweet-title"
-            >
-              非 诚 勿 扰
-            </font>
+      <div className="background">
+        <Grid container justifyContent="center">
+          <div className="title-wrapper">
+            <font className="top-title">T a n d o n C S S A</font>
+            <font className="sweet-title">非 诚 勿 扰</font>
             <br />
           </div>
-      </Grid>
-      <Box sx={{ flexGrow: 1, margin: 2 }}>
-        <Grid container style={{justifyContent: 'center', maxWidth:"150vh", margin:"auto"}} justifyContent="center">
-          {ViewData.map((light) => {
-            return (
-              <Grid key={light.userid} item style={{ width: "17%", height:"100%",display: 'inline-flex',padding:"20px"}} className="noPadding" justifyContent="center">
-                <Stack style={{justifyContent: "center"}}>
-                    <Image key={light.userid} userid={light.userid} mode={light.mode}/>
-                  <font
-                    style={{
-                      justifyContent: "center",
-                      fontSize: "2vw",
-                      color: "white",
-                      position:"relative",
-                      display:'inline-flex',
-                      top:"-20%"
-                    }}
-                  >
-                    {light.userid}. {light.name}
-                  </font>
-                </Stack>
-              </Grid>
-            );
-          })}
         </Grid>
-      </Box>
-
-      <Dialog
-        open={showPick}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-        PaperProps={{
-          style: {
-            backgroundColor: 'transparent',
-            boxShadow: 'none',
-          },
-        }}
-      >
-        <DialogTitle id="alert-dialog-title">
-          <div
+        <Box sx={{ flexGrow: 1, margin: 2 }}>
+          <Grid
+            container
             style={{
-              backgroundImage: `url(${pickImage})`,
-              width: "490px",
-              height: "490px",
               justifyContent: "center",
-              textAlign: "center",
+              maxWidth: "150vh",
+              margin: "auto",
             }}
+            justifyContent="center"
           >
-              {/* <div style={{justifyContent: "center",margin:"auto"}}> */}
-                <font
+            {ViewData.map((light) => {
+              return (
+                <Grid
+                  key={light.userid}
+                  item
                   style={{
-                    textAlign: "center",
-                    justifyContent: "center",
-                    marginTop:"25%",
-                    fontSize: "175px",
-                    display:"inline-flex",
-                    color: "white",
+                    width: "17%",
+                    height: "100%",
+                    display: "inline-flex",
+                    padding: "20px",
                   }}
+                  className="noPadding"
+                  justifyContent="center"
                 >
-                  {pick}
-                </font>
+                  <Stack style={{ justifyContent: "center" }}>
+                    <Image
+                      key={light.userid}
+                      userid={light.userid}
+                      mode={light.mode}
+                    />
+                    <font
+                      style={{
+                        justifyContent: "center",
+                        fontSize: "2vw",
+                        color: "white",
+                        position: "relative",
+                        display: "inline-flex",
+                        top: "-20%",
+                      }}
+                    >
+                      {light.userid}. {light.name}
+                    </font>
+                  </Stack>
+                </Grid>
+              );
+            })}
+          </Grid>
+        </Box>
+
+        <Dialog
+          open={showPick}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+          PaperProps={{
+            style: {
+              backgroundColor: "transparent",
+              boxShadow: "none",
+            },
+          }}
+        >
+          <DialogTitle id="alert-dialog-title">
+            <div
+              style={{
+                backgroundImage: `url(${pickImage})`,
+                width: "490px",
+                height: "490px",
+                justifyContent: "center",
+                textAlign: "center",
+              }}
+            >
+              {/* <div style={{justifyContent: "center",margin:"auto"}}> */}
+              <font
+                style={{
+                  textAlign: "center",
+                  justifyContent: "center",
+                  marginTop: "25%",
+                  fontSize: "175px",
+                  display: "inline-flex",
+                  color: "white",
+                }}
+              >
+                {pick}
+              </font>
             </div>
-        </DialogTitle>
-      </Dialog>
-    </div>
+          </DialogTitle>
+        </Dialog>
+      </div>
     </>
   );
 }

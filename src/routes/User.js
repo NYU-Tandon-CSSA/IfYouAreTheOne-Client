@@ -108,7 +108,7 @@ export default function User({ ViewData }) {
       <br />
       <Grid container justifyContent="center">
         <div style={{ width: "400px" }}>
-          <Image mode={mode}/>
+          <Image mode={mode} />
         </div>
       </Grid>
       <br />
