@@ -77,7 +77,7 @@ export default function View({ ViewData }) {
                   key={light.userid}
                   item
                   style={{
-                    width: "17%",
+                    width: "15%",
                     height: "100%",
                     display: "inline-flex",
                     padding: "20px",
@@ -94,7 +94,7 @@ export default function View({ ViewData }) {
                     <font
                       style={{
                         justifyContent: "center",
-                        fontSize: "2vw",
+                        fontSize: "1.5vw",
                         color: "white",
                         position: "relative",
                         display: "inline-flex",
