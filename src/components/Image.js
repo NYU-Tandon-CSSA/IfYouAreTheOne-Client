@@ -4,17 +4,17 @@ import onLight from "../images/on.png";
 import offLight from "../images/off.png";
 import blastLight from "../images/blast.png";
 
-import image1 from "../images/userImage/image1.jpeg";
-import image2 from "../images/userImage/image2.jpeg";
-import image3 from "../images/userImage/image3.JPG";
-import image4 from "../images/userImage/image4.jpeg";
-import image5 from "../images/userImage/image5.jpeg";
+import image1 from "../images/userImage/image1.jpg";
+import image2 from "../images/userImage/image2.jpg";
+import image3 from "../images/userImage/image3.jpg";
+import image4 from "../images/userImage/image4.jpg";
+import image5 from "../images/userImage/image5.jpg";
 import image6 from "../images/userImage/image6.jpg";
 import image7 from "../images/userImage/image7.jpg";
-import image8 from "../images/userImage/image8.jpeg";
+import image8 from "../images/userImage/image8.jpg";
 import image9 from "../images/userImage/image9.jpg";
-import image10 from "../images/userImage/image10.png";
-import image11 from "../images/userImage/image11.png";
+import image10 from "../images/userImage/image10.jpg";
+import image11 from "../images/userImage/image11.jpg";
 
 export default function light({ userid, mode }) {
   let light;
@@ -59,8 +59,8 @@ export default function light({ userid, mode }) {
           opacity: imageState,
           borderRadius: "50%",
           position: "relative",
-          aspectRatio: 1/1,
-          objectFit:"cover"
+          aspectRatio: 1 / 1,
+          objectFit: "cover",
         }}
       />
       <img
