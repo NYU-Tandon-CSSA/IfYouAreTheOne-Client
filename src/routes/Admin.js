@@ -299,6 +299,19 @@ export default function Admin({ ViewData }) {
                 label="11"
                 onClick={() => setPick(11)}
               />
+                            <FormControlLabel
+                value="12"
+                control={<Radio />}
+                label="12"
+                onClick={() => setPick(12)}
+              />
+                            <FormControlLabel
+                value="13"
+                control={<Radio />}
+                label="13"
+                onClick={() => setPick(13)}
+              />
+
             </RadioGroup>
           </FormControl>
         </DialogContent>
@@ -340,6 +353,8 @@ export default function Admin({ ViewData }) {
               onSendLights(9, "on");
               onSendLights(10, "on");
               onSendLights(11, "on");
+              onSendLights(12, "on");
+              onSendLights(13, "on");
               handleClickCloseLight();
             }}
           >

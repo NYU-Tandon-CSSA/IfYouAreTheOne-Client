@@ -77,7 +77,7 @@ export default function View({ ViewData }) {
                   key={light.userid}
                   item
                   style={{
-                    width: "15%",
+                    width: "14%",
                     height: "100%",
                     display: "inline-flex",
                     padding: "20px",
