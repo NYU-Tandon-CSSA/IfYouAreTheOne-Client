@@ -18,7 +18,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 const httpLink = createHttpLink({
   // uri: "http://localhost:7789/graphql",
   uri: "http://10.18.151.83:7789/graphql",
-  // uri: "http://192.168.1.158:7789/graphql",
 });
 
 // For development, uri: ws://localhost:7789/graphql
@@ -26,7 +25,6 @@ const httpLink = createHttpLink({
 const wsLink = new WebSocketLink({
   // uri: "ws://localhost:7789/graphql",
   uri: "ws://10.18.151.83:7789/graphql",
-  // uri: "ws://192.168.1.158:7789/graphql",
   options: {
     reconnect: true,
   },
