@@ -20,10 +20,11 @@ import Grid from "@mui/material/Grid";
 import LightCount from "../components/LightCount";
 
 const UPDATE_LIGHTS = gql`
-  mutation UpdateLights($userid: Int!, $mode: String!) {
-    updateLight(userid: $userid, mode: $mode) {
+  mutation UpdateLights($userid: Int!, $mode: String!, $name: String!) {
+    updateLight(userid: $userid, mode: $mode, name: $name) {
       userid
       mode
+      name
     }
   }
 `;
@@ -116,6 +117,7 @@ export default function Admin({ ViewData }) {
       variables: {
         userid: userid,
         mode: mode,
+        name: ViewData.find(light => light.userid === userid)?.name || ""
       },
     });
   };
@@ -299,19 +301,12 @@ export default function Admin({ ViewData }) {
                 label="11"
                 onClick={() => setPick(11)}
               />
-                            <FormControlLabel
+              <FormControlLabel
                 value="12"
                 control={<Radio />}
                 label="12"
                 onClick={() => setPick(12)}
               />
-                            <FormControlLabel
-                value="13"
-                control={<Radio />}
-                label="13"
-                onClick={() => setPick(13)}
-              />
-
             </RadioGroup>
           </FormControl>
         </DialogContent>
@@ -354,7 +349,6 @@ export default function Admin({ ViewData }) {
               onSendLights(10, "on");
               onSendLights(11, "on");
               onSendLights(12, "on");
-              onSendLights(13, "on");
               handleClickCloseLight();
             }}
           >
