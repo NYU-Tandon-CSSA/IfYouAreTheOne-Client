@@ -16,14 +16,16 @@ import { BrowserRouter as Router } from "react-router-dom";
 // For development, uri: http://localhost:7789/graphql
 // For deploy, uri: https://powerful-temple-86759.herokuapp.com/graphql
 const httpLink = createHttpLink({
-  uri: "http://10.0.0.246:7789/graphql",
+  uri: "http://10.18.241.231:7789/graphql",
+  // uri: "http://10.0.0.246:7789/graphql",
   // uri: "http://10.18.151.83:7789/graphql",
 });
 
 // For development, uri: ws://localhost:7789/graphql
 // For deploy, uri: wss://powerful-temple-86759.herokuapp.com/graphql
 const wsLink = new WebSocketLink({
-  uri: "ws://10.0.0.246:7789/graphql",
+  uri: "ws://10.18.241.231:7789/graphql",
+  // uri: "ws://10.0.0.246:7789/graphql",
   // uri: "ws://10.18.151.83:7789/graphql",
   options: {
     reconnect: true,

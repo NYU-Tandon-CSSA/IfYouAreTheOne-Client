@@ -91,10 +91,11 @@ export default function Admin({ ViewData }) {
   };
 
   const onSendPicks = (userid) => {
+    setCurPick(userid);
     updatePick({
       variables: {
         user: "user",
-        userid: userid,
+        userid: userid
       },
     });
   };
@@ -121,13 +122,6 @@ export default function Admin({ ViewData }) {
       },
     });
   };
-
-  useSubscription(PICKS_SUBSCRIPTION, {
-    onSubscriptionData: (data) => {
-      const picks = data.subscriptionData.data.pickUpdated;
-      setCurPick(picks[0].userid);
-    },
-  });
 
   return (
     <>
@@ -313,7 +307,7 @@ export default function Admin({ ViewData }) {
         <DialogActions>
           <Button
             onClick={() => {
-              onSendPicks(pick, false);
+              onSendPicks(pick);
               handleClickClosePick();
             }}
           >
