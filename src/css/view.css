@@ -1,8 +1,9 @@
 /* Overall page background set to white */
 .background {
   background-color: indianred;
-  height: 120vh;
+  height: 100vh;
   font-family: "Exo 2", sans-serif;
+  overflow: hidden;
 }
 
 /* Animated shifting gradient for profile cards in warm colors */

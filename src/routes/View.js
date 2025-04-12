@@ -60,22 +60,30 @@ export default function View({ ViewData }) {
     return (
         <>
             <div className="background">
-                <Box sx={{ flexGrow: 1, margin: 0, height: "100vh", width: "100vw" }}>
+                <Box sx={{ 
+                    flexGrow: 1, 
+                    margin: 0, 
+                    height: "100%", 
+                    width: "100%",
+                    overflow: "hidden"
+                }}>
                     <Grid
                         container
-                        spacing={0}
+                        spacing={1}
                         style={{
                             height: "100%",
                             width: "100%",
+                            padding: "10px",
+                            boxSizing: "border-box"
                         }}
                     >
                         {ViewData.map((light) => (
                             <Grid
                                 key={light.userid}
                                 item
-                                xs={2} // Creates 6 columns per row (total 12)
+                                xs={2}
                                 style={{
-                                    height: "50vh", // 2 rows total
+                                    height: "calc(50vh - 20px)",
                                     display: "flex",
                                     justifyContent: "center",
                                     alignItems: "center",
@@ -83,16 +91,16 @@ export default function View({ ViewData }) {
                                 className="noPadding"
                             >
                                 <div
-                                    className="cardShift" // Use the animated warm gradient background
+                                    className="cardShift"
                                     style={{
-                                        padding: "3px",
+                                        padding: "2px",
                                         borderRadius: "6px",
                                         boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
                                         display: "flex",
                                         flexDirection: "column",
-                                        width: "90%", // slightly inset within the grid cell
-                                        height: "90%",
-                                        justifyContent: "flex-start",
+                                        width: "95%",
+                                        height: "95%",
+                                        justifyContent: "space-between",
                                         alignItems: "center",
                                     }}
                                 >
@@ -103,32 +111,33 @@ export default function View({ ViewData }) {
                                         style={{
                                             width: "100%",
                                             height: "auto",
-                                            maxHeight: "calc(50vh - 60px)", // Reserve room for hearts and name
+                                            maxHeight: "calc(50vh - 50px)",
                                             objectFit: "contain",
                                             borderRadius: "4px",
-                                            marginBottom: "3px",
                                         }}
                                     />
-                                    {/* Heart icons placed immediately below the profile image */}
                                     <div
                                         style={{
                                             width: "100%",
                                             display: "flex",
                                             justifyContent: "center",
                                             alignItems: "center",
-                                            marginTop: "2px",
                                         }}
                                     >
                                     </div>
-                                    {/* User name/info displayed below the hearts */}
                                     <div
                                         style={{
-                                            fontSize: "1.5vw",
+                                            fontSize: "1.8vw",
                                             color: "#333",
                                             fontWeight: "bold",
-                                            marginTop: "8px",
                                             fontFamily: "'Microsoft YaHei', '微软雅黑', Arial, sans-serif",
                                             textShadow: "0 1px 1px rgba(255, 255, 255, 0.8)",
+                                            textAlign: "center",
+                                            padding: "0 5px",
+                                            overflow: "hidden",
+                                            textOverflow: "ellipsis",
+                                            whiteSpace: "nowrap",
+                                            marginTop: "-10px"
                                         }}
                                     >
                                         {light.userid}. {light.name}

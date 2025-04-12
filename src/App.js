@@ -9,9 +9,9 @@ import View from "./routes/View";
 import User from "./routes/User";
 import Admin from "./routes/Admin";
 
-import blastSFX from "./sounds/blast.mp3";
+import blastSFX from "./sounds/heart.mp3";
 import offSFX from "./sounds/off.mp3";
-import showPickSFX from "./sounds/showPick.mp3";
+import showPickSFX from "./sounds/page-load.mp3";
 
 const FETCH_LIGHTS_QUERY = gql`
   {
