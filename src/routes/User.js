@@ -16,10 +16,11 @@ import Image from "../components/Image";
 import LightCount from "../components/LightCount";
 
 const UPDATE_LIGHTS = gql`
-  mutation UpdateLights($userid: Int!, $mode: String!) {
-    updateLight(userid: $userid, mode: $mode) {
+  mutation UpdateLights($userid: Int!, $mode: String!, $name: String!) {
+    updateLight(userid: $userid, mode: $mode, name: $name) {
       userid
       mode
+      name
     }
   }
 `;
@@ -72,6 +73,7 @@ export default function User({ ViewData }) {
       variables: {
         userid: username,
         mode: lightmode,
+        name: ViewData.find(light => light.userid === username)?.name || ""
       },
     });
   };

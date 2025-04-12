@@ -46,8 +46,14 @@ export default function View({ ViewData }) {
   useSubscription(PICKS_SUBSCRIPTION, {
     onSubscriptionData: (data) => {
       const picks = data.subscriptionData.data.pickUpdated;
-      setPick(picks[0].userid);
-      setShowPick(picks[0].show);
+      const shownPicks = picks.filter(pick => pick.show === true)
+                            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      if (shownPicks.length > 0) {
+        setPick(shownPicks[0].userid);
+        setShowPick(true);
+      } else {
+        setShowPick(false);
+      }
     },
   });
 

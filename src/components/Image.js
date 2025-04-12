@@ -16,7 +16,6 @@ import image9 from "../images/userImage/image9.jpg";
 import image10 from "../images/userImage/image10.jpg";
 import image11 from "../images/userImage/image11.jpg";
 import image12 from "../images/userImage/image12.jpg";
-import image13 from "../images/userImage/image13.jpg";
 
 export default function light({ userid, mode }) {
   let light;
@@ -43,7 +42,6 @@ export default function light({ userid, mode }) {
     image10,
     image11,
     image12,
-    image13,
   ];
   let imageState;
   userImage = images[userid];
