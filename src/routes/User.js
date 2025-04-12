@@ -121,7 +121,7 @@ export default function User({ ViewData }) {
           <Button
             variant="contained"
             onClick={
-              mode === "on" ? handleClickOpenOffConfirm : handleClickOpenWarning
+              mode === "on" ? handleClickOpenOffConfirm : (mode === "blast" ? handleClickOpenWarning : handleClickOpenWarning)
             }
             style={{ width: "180px", height: "80px" }}
             color="neutral"
