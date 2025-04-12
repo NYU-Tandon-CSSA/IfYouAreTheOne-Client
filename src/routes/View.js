@@ -127,7 +127,7 @@ export default function View({ ViewData }) {
                                     </div>
                                     <div
                                         style={{
-                                            fontSize: "1.8vw",
+                                            fontSize: "2.2vw",
                                             color: "#333",
                                             fontWeight: "bold",
                                             fontFamily: "'Microsoft YaHei', '微软雅黑', Arial, sans-serif",
@@ -137,10 +137,12 @@ export default function View({ ViewData }) {
                                             overflow: "hidden",
                                             textOverflow: "ellipsis",
                                             whiteSpace: "nowrap",
-                                            marginTop: "-10px"
+                                            marginTop: "-80px",
+                                            lineHeight: "1.8"
                                         }}
                                     >
-                                        {light.userid}. {light.name}
+                                        <div>{light.userid}</div>
+                                        <div>{light.name}</div>
                                     </div>
                                 </div>
                             </Grid>
