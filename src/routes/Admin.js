@@ -331,18 +331,9 @@ export default function Admin({ ViewData }) {
         <DialogActions>
           <Button
             onClick={() => {
-              onSendLights(1, "on");
-              onSendLights(2, "on");
-              onSendLights(3, "on");
-              onSendLights(4, "on");
-              onSendLights(5, "on");
-              onSendLights(6, "on");
-              onSendLights(7, "on");
-              onSendLights(8, "on");
-              onSendLights(9, "on");
-              onSendLights(10, "on");
-              onSendLights(11, "on");
-              onSendLights(12, "on");
+              ViewData.forEach(light => {
+                onSendLights(light.userid, "on");
+              });
               handleClickCloseLight();
             }}
           >
